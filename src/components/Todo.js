@@ -6,13 +6,13 @@ function Todo() {
  
     const [todo, setTodo] = useState([
         {
-        value: "React çalış"
+        id: 0, value: "React çalış", completed: false
       },
       {
-        value: "Su iç"
+        id: 1, value: "Su iç", completed: false
       },
       {
-        value: "Yürüyüş yap"
+      id: 2, value: "Yürüyüş yap",  completed: false
       },
       ]);
 
@@ -22,7 +22,7 @@ function Todo() {
           <h1>todos</h1>
           </header>
 
-          <Input todo={todo} setTodo={setTodo}/>
+          <Input todo={todo} addTodo={setTodo}/>
           <List todo={todo} removeTodo={setTodo} updateTodo={setTodo}/>
         </section>
       );

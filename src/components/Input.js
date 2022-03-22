@@ -1,18 +1,17 @@
 import { useState, useEffect} from 'react';
 
-function Input({setTodo, todo}) {
-    const [input, setInput] = useState({id: 0, value: "", completed: false });
+function Input({addTodo, todo}) {
+    const [input, setInput] = useState({id: 3, value: "", isCompleted: false});
 
-    const [itemId, setItemId] = useState(0);
+    const [itemId, setItemId] = useState(3);
 
     //giris yapıldıktan sonra input'u sıfırlayacak.
     useEffect(() => {
-      setInput({id:0, value: "",completed: false });
+      setInput({id: 3, value: "", isCompleted: false});
     },[todo]);
 
     const onChangeInput = (e)=> {
-        setInput({...input, id: itemId, value: e.target.value, completed: false})
-        
+        setInput({...input, id: itemId, value: e.target.value, isCompleted: false})        
     };
 
     //bu func. giris yapıldıgında sayfayı tekrar yüklemesini engeller.
@@ -24,7 +23,7 @@ function Input({setTodo, todo}) {
       }
 
       setItemId(itemId+1);
-      setTodo([...todo, input]); 
+      addTodo([...todo, input]); 
     }
   
 

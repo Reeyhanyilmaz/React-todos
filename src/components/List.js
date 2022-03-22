@@ -9,23 +9,24 @@ function List({todo, removeTodo, updateTodo}) {
   
   useEffect(() => {
     if(filterType===1){
-      setFilteredTodo(todo.filter((item => item.completed === false)));
+      setFilteredTodo(todo.filter((item => item.isCompleted === false)));
     } else if (filterType === 2){
-      setFilteredTodo(todo.filter((item => item.completed)));
+      setFilteredTodo(todo.filter((item => item.isCompleted)));
     } else {
       setFilteredTodo(todo);
     }
+    // console.log(todo)
   }, [filterType, todo]);
 
 
   const remove = (itemId) => removeTodo(todo.filter((item) => item.id !== itemId)) ;
 
-  const clearCompleted = () => removeTodo(todo.filter((item) => !item.completed));
+  const clearCompleted = () => removeTodo(todo.filter((item) => !item.isCompleted));
 
   const checkboxChange =(itemIndex) => {
     updateTodo(todo.map((item, index) => {
       if(itemIndex === index){
-        return {...item, completed: !item.completed }
+        return {...item, isCompleted: !item.completed }
         }else {
           return {...item}
         }     
@@ -34,14 +35,14 @@ function List({todo, removeTodo, updateTodo}) {
 
   const allTodoCompleted = () => {
 
-    if(todo.every((item) => item.completed)){
+    if(todo.every((item) => item.isCompleted)){
       updateTodo(todo.map((item) => {
-        return {...item, completed: false}
+        return {...item, isCompleted: false}
       }));
     } else {
       updateTodo(todo.map((item) => {
-        if( item.completed !== true){
-          return {...item, completed: true}
+        if( item.isCompleted !== true){
+          return {...item, isCompleted: true}
         }
         return {...item}
       }));
@@ -61,20 +62,20 @@ function List({todo, removeTodo, updateTodo}) {
       //todo map'lemis olsak ekranda todo listelenir. filteredTodo map'lenince all, active, completed hangi butona basıyorsak sadece onu gösterir.
 
       filteredTodo.map((todos, index) => (
-      <li key={todo.id} className={todo.completed ? "completed" : ""}>
+      <li key={index} className={todos.isCompleted ? "completed" : ""}>
         <div className='view'>
 
-        <input defaultChecked={todo.completed} type="checkbox" className='toggle' checked={todo.completed} onChange={() => checkboxChange(index)} />
+        <input defaultChecked={todos.isCompleted} type="checkbox" className='toggle' checked={todos.isCompleted} onChange={() => checkboxChange(index)} />
 
         <label>{todos.value}</label>     
-      <button onClick={() => remove(todo.id)} className='destroy'></button>
+      <button onClick={() => remove(todos.id)} className='destroy'></button>
       </div>
       </li>            
       ))
     }  
     </ul>
     </section>
-    
+
     <footer className='footer'>
       <span className='todo-count'>
         <strong>{filteredTodo.length}</strong>
@@ -98,10 +99,10 @@ function List({todo, removeTodo, updateTodo}) {
       </li>
     </ul>
 
-    <button onClick={clearCompleted} className='clear-completed'>Clear Completed</button>
-
+    <button onClick={clearCompleted} className='clear-completed'>Clear Completed</button>    
     </footer>
   </>
+  
   )
 }
 
