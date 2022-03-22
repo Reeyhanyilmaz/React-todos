@@ -23,6 +23,7 @@ function List({todo, removeTodo, updateTodo}) {
 
   const clearCompleted = () => removeTodo(todo.filter((item) => !item.isCompleted));
 
+  //listelenen todo'ları checked yapmak icin
   const checkboxChange =(itemIndex) => {
     updateTodo(todo.map((item, index) => {
       if(itemIndex === index){
@@ -33,6 +34,7 @@ function List({todo, removeTodo, updateTodo}) {
     }));
   }
 
+  //tüm todo'ları checked yaptıgımız checkbox icin
   const allTodoCompleted = () => {
 
     if(todo.every((item) => item.isCompleted)){
@@ -55,7 +57,7 @@ function List({todo, removeTodo, updateTodo}) {
     <input onChange={() => allTodoCompleted()} id="toggle-all" className="toggle-all" 
     type="checkbox" />
 
-    <label htmlFor="toggle-all">Mark all as complete</label>
+    <label htmlFor="toggle-all" className={todo.length === 0 ? "hidden" : "show"}>Mark all as complete</label>
 
     <ul className='todo-list'>
     {
@@ -76,7 +78,7 @@ function List({todo, removeTodo, updateTodo}) {
     </ul>
     </section>
 
-    <footer className='footer'>
+    <footer className={todo.length === 0 ? "hidden" : "footer"}>
       <span className='todo-count'>
         <strong>{filteredTodo.length}</strong>
       items left
@@ -99,7 +101,7 @@ function List({todo, removeTodo, updateTodo}) {
       </li>
     </ul>
 
-    <button onClick={clearCompleted} className='clear-completed'>Clear Completed</button>    
+    <button onClick={clearCompleted} className= "clear-completed"> Clear Completed</button>    
     </footer>
   </>
   
