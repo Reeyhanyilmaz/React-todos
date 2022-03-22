@@ -1,4 +1,3 @@
-// import { toBeInTheDocument } from '@testing-library/jest-dom/dist/matchers';
 import { useState, useEffect} from 'react';
 
 function Input({setTodo, todo}) {
@@ -14,6 +13,7 @@ function Input({setTodo, todo}) {
         
     };
 
+    //bu func. giris yapıldıgında sayfayı tekrar yüklemesini engeller.
     const onSubmit = (e) => {
       e.preventDefault();
 
@@ -27,8 +27,9 @@ function Input({setTodo, todo}) {
   return (
     <form onSubmit={onSubmit}>
         <input 
+        className='new-todo'
         placeholder='Enter to do item'
-        name='todoText'
+        name='todo-list'
         value={input.value}
         onChange={onChangeInput}
         />

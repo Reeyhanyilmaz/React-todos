@@ -17,11 +17,14 @@ function Todo() {
       ]);
 
       return (
-        <div className="App">
-          <h2>todos</h2>
+        <section className='todoapp'>
+        <header className="header">
+          <h1>todos</h1>
+          </header>
+
           <Input todo={todo} setTodo={setTodo}/>
           <List todo={todo} />
-        </div>
+        </section>
       );
 }
 
