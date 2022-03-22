@@ -1,15 +1,17 @@
 import { useState, useEffect} from 'react';
 
 function Input({setTodo, todo}) {
-    const [input, setInput] = useState({value: "" });
+    const [input, setInput] = useState({id: 0, value: "", completed: false });
+
+    const [itemId, setItemId] = useState(0);
 
     //giris yapıldıktan sonra input'u sıfırlayacak.
     useEffect(() => {
-      setInput({value: "" });
+      setInput({id:0, value: "",completed: false });
     },[todo]);
 
     const onChangeInput = (e)=> {
-        setInput({...input, value: e.target.value })
+        setInput({...input, id: itemId, value: e.target.value, completed: false})
         
     };
 
@@ -20,6 +22,8 @@ function Input({setTodo, todo}) {
       if(input.value === ""){
         return false;
       }
+
+      setItemId(itemId+1);
       setTodo([...todo, input]); 
     }
   
@@ -29,7 +33,7 @@ function Input({setTodo, todo}) {
         <input 
         className='new-todo'
         placeholder='Enter to do item'
-        name='todo-list'
+        name='value'
         value={input.value}
         onChange={onChangeInput}
         />

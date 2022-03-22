@@ -23,7 +23,7 @@ function Todo() {
           </header>
 
           <Input todo={todo} setTodo={setTodo}/>
-          <List todo={todo} />
+          <List todo={todo} removeTodo={setTodo} updateTodo={setTodo}/>
         </section>
       );
 }
