@@ -1,26 +1,38 @@
 // import { toBeInTheDocument } from '@testing-library/jest-dom/dist/matchers';
-import { useState } from 'react'
+import { useState, useEffect} from 'react';
 
-
-function Input({setTodo}) {
+function Input({setTodo, todo}) {
     const [input, setInput] = useState({value: "" });
-    
+
+    //giris yapıldıktan sonra input'u sıfırlayacak.
+    useEffect(() => {
+      setInput({value: "" });
+    },[todo]);
+
     const onChangeInput = (e)=> {
         setInput({...input, value: e.target.value })
         
     };
 
-   setTodo([...todo, input]); 
+    const onSubmit = (e) => {
+      e.preventDefault();
+
+      if(input.value === ""){
+        return false;
+      }
+      setTodo([...todo, input]); 
+    }
+  
 
   return (
-    <div>
+    <form onSubmit={onSubmit}>
         <input 
         placeholder='Enter to do item'
         name='todoText'
         value={input.value}
         onChange={onChangeInput}
         />
-    </div>
+    </form>
   )
 }
 

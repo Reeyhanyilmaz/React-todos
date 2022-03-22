@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import Input from './Input';
 import List from './List';
 
@@ -14,17 +14,13 @@ function Todo() {
       {
         value: "Yürüyüş yap"
       },
-      ])
-    
-      useEffect(() => {
-
-      },[todo])
+      ]);
 
       return (
         <div className="App">
           <h2>todos</h2>
-          <Input todo={todo} />
-          <List todo={todo} setTodo={setTodo}/>
+          <Input todo={todo} setTodo={setTodo}/>
+          <List todo={todo} />
         </div>
       );
 }
