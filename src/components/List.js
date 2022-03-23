@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-function List({todo, removeTodo, updateTodo,setTodo}) {
+function List({todo, removeTodo, updateTodo}) {
 
   //alttaki all , active, completed secenekleri icin filtreleme 
   const [filterType, setFilterType] = useState(0);
@@ -35,6 +35,7 @@ function List({todo, removeTodo, updateTodo,setTodo}) {
     ));
   }
 
+
   //tüm todo'ları checked yaptıgımız checkbox icin
   const allTodoCompleted = () => {
     if(todo.every((item) => item.isCompleted)){
@@ -59,6 +60,10 @@ function List({todo, removeTodo, updateTodo,setTodo}) {
     }
   };
 
+  //itemlarda da date olması icin
+  let date = new Date();
+  let now = date.getDate() + "/" + (date.getMonth()+1) + "/"+ date.getFullYear();
+
   return (
     <>
     <section className='main'>    
@@ -77,7 +82,7 @@ function List({todo, removeTodo, updateTodo,setTodo}) {
 
           <input type="checkbox" className='toggle' checked={todos.isCompleted} onChange={() => checkboxChange(index)} />
 
-          <label>{todos.value}</label>     
+          <label>{todos.value} <span className='itemDate'>{now}</span> </label>     
 
           <button onClick={() => removeItem(todos.id)} className='destroy'></button>
        </div>

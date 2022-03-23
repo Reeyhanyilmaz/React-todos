@@ -84,6 +84,23 @@ body {
 	text-rendering: optimizeLegibility;
 }
 
+.date {
+	color: rgba(175, 47, 47, 0.15);
+	font-size: 25px;
+	font-weight:700;
+	padding: 8px;
+	display: flex;
+	justify-content: center;
+}
+
+.itemDate{
+	color: #af5b5e;
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+    margin-top: -27px;
+}
+
 .new-todo,
 .edit {
 	position: relative;
