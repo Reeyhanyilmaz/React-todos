@@ -6,19 +6,18 @@ function Todo() {
  
     const [todo, setTodo] = useState([]);      
       
-
     //sayfa yenilense dahi local storage'a verileri kaydetmek icin.
+    //todoapp key adımız. todo'da listelenecek itemelrin value deferi.
     useEffect(() => {      
-      const localStr = JSON. parse(localStorage.getItem("todoapp"));      
+      const localStr = JSON.parse(localStorage.getItem("todoapp"));      
       if(localStr) {
         setTodo(localStr);
       }
     },[]);
 
     useEffect(() => {
-      localStorage.setItem("todoapp" ,JSON.stringify(todo))
+      localStorage.setItem("todoapp" , JSON.stringify(todo))
     },[todo])
-
 
       return (
         <section className='todoapp'>

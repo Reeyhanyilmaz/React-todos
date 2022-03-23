@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-function List({todo, removeTodo, updateTodo}) {
+function List({todo, removeTodo, updateTodo,setTodo}) {
 
   //alttaki all , active, completed secenekleri icin filtreleme 
   const [filterType, setFilterType] = useState(0);
@@ -27,8 +27,9 @@ function List({todo, removeTodo, updateTodo}) {
   const checkboxChange =(itemIndex) => {
     updateTodo(todo.map((item, index) => {
       if(itemIndex === index){
-        return {...item, isCompleted: !item.iscompleted };
-        }    
+        item.isCompleted = !item.isCompleted
+      //tıklayınca checked yapar, tekrar tıklayınca checked kaldırır.
+      }    
       return item
         }     
     ));
@@ -50,8 +51,7 @@ function List({todo, removeTodo, updateTodo}) {
     }
   }
 
-
-  //clear completed butonunu completed yoksa hidden yapmakicin;
+  //clear completed butonunu completed yoksa hidden yapmak icin;
   let todoCompleted= 0;
   for (let i=0; i<todo.length; i++){
     if(todo[i].isCompleted){
