@@ -23,7 +23,7 @@ function Input({addTodo, todo}) {
       }
 
       setItemId(itemId+1);
-      addTodo([...todo, input]); 
+      addTodo([...todo, input]);       
     }
   
 

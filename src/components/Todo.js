@@ -1,20 +1,24 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import Input from './Input';
 import List from './List';
 
 function Todo() {
  
-    const [todo, setTodo] = useState([
-        {
-        id: 0, value: "React çalış", completed: false
-      },
-      {
-        id: 1, value: "Su iç", completed: false
-      },
-      {
-      id: 2, value: "Yürüyüş yap",  completed: false
-      },
-      ]);
+    const [todo, setTodo] = useState([]);      
+      
+
+    //sayfa yenilense dahi local storage'a verileri kaydetmek icin.
+    useEffect(() => {      
+      const localStr = JSON. parse(localStorage.getItem("todoapp"));      
+      if(localStr) {
+        setTodo(localStr);
+      }
+    },[]);
+
+    useEffect(() => {
+      localStorage.setItem("todoapp" ,JSON.stringify(todo))
+    },[todo])
+
 
       return (
         <section className='todoapp'>
